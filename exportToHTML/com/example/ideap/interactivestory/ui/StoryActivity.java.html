@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>StoryActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+StoryActivity.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">com.example.ideap.interactivestory.ui; 
+ 
+</span><span class="s0">import </span><span class="s1">android.content.Intent; 
+</span><span class="s0">import </span><span class="s1">android.graphics.drawable.Drawable; 
+</span><span class="s0">import </span><span class="s1">android.support.v7.app.AppCompatActivity; 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+</span><span class="s0">import </span><span class="s1">android.util.Log; 
+</span><span class="s0">import </span><span class="s1">android.view.View; 
+</span><span class="s0">import </span><span class="s1">android.widget.Button; 
+</span><span class="s0">import </span><span class="s1">android.widget.ImageView; 
+</span><span class="s0">import </span><span class="s1">android.widget.TextView; 
+ 
+</span><span class="s0">import </span><span class="s1">com.example.ideap.interactivestory.R; 
+</span><span class="s0">import </span><span class="s1">com.example.ideap.interactivestory.model.Page; 
+</span><span class="s0">import </span><span class="s1">com.example.ideap.interactivestory.model.Stories; 
+ 
+</span><span class="s0">public class </span><span class="s1">StoryActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity { 
+ 
+    </span><span class="s0">public static final </span><span class="s1">String Tag = StoryActivity.</span><span class="s0">class</span><span class="s1">.getSimpleName(); 
+ 
+    </span><span class="s0">private </span><span class="s1">Stories mStory = </span><span class="s0">new </span><span class="s1">Stories(); 
+    </span><span class="s0">private </span><span class="s1">ImageView mImageView; 
+    </span><span class="s0">private </span><span class="s1">TextView mTextView; 
+    </span><span class="s0">private </span><span class="s1">Button mChoice1; 
+    </span><span class="s0">private </span><span class="s1">Button mChoice2; 
+    </span><span class="s0">private </span><span class="s1">String mName; 
+    </span><span class="s0">private </span><span class="s1">Page mCurrentPage; 
+ 
+ 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+        setContentView(R.layout.activity_story1); 
+ 
+            </span><span class="s2">//This activity is started with the intent</span><span class="s1"> 
+        Intent intent = getIntent(); 
+            </span><span class="s2">//This create an intent used to start this activity</span><span class="s1"> 
+        mName = intent.getStringExtra(getString(R.string.key_name));</span><span class="s2">//getString(R.string.key_name) is a resource from string.xml</span><span class="s1"> 
+            </span><span class="s2">//This get the key name from the passed intent that is made in the main activity</span><span class="s1"> 
+ 
+        </span><span class="s0">if</span><span class="s1">(mName==</span><span class="s0">null</span><span class="s1">){ 
+            mName = </span><span class="s3">&quot;Friend&quot;</span><span class="s1">; 
+        } 
+            </span><span class="s2">//This if statement secure that no mater if we have typed a wrong key in the mName variable,</span><span class="s1"> 
+            </span><span class="s2">//  getStringExtra(&quot;Name&quot;) (Name has to be name), then the name value will allways have a value (Friend as default)</span><span class="s1"> 
+ 
+        Log.d(Tag, mName); 
+            </span><span class="s2">//This log show us the name that will be played in the activity, no mater if it is default or typed name</span><span class="s1"> 
+ 
+        mImageView = (ImageView) findViewById(R.id.storyImageView); 
+        mTextView = (TextView) findViewById(R.id.storyTextView); 
+        mChoice1 = (Button) findViewById(R.id.choiceButton1); 
+        mChoice2 = (Button) findViewById(R.id.choiceButton2); 
+ 
+        loadPage(</span><span class="s4">0</span><span class="s1">); 
+    } 
+ 
+    </span><span class="s0">private void </span><span class="s1">loadPage(</span><span class="s0">int </span><span class="s1">choice){ 
+        mCurrentPage = mStory.getPage(choice); 
+ 
+        Drawable drawable = getResources().getDrawable(mCurrentPage.getImageId()); 
+        mImageView.setImageDrawable(drawable); 
+ 
+        String pageText = mCurrentPage.getText(); 
+        </span><span class="s2">//Add the name if placeholder included. Wont add if no placeholder</span><span class="s1"> 
+        pageText = String.format(pageText, mName); 
+        mTextView.setText(pageText); 
+ 
+        </span><span class="s0">if</span><span class="s1">(mCurrentPage.isFinal()){ 
+            mChoice1.setVisibility(View.INVISIBLE); 
+            mChoice2.setText(</span><span class="s3">&quot;Play AGAIN&quot;</span><span class="s1">); 
+            mChoice2.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() { 
+                @Override 
+                </span><span class="s0">public void </span><span class="s1">onClick(View v) { 
+                    finish(); 
+                } 
+            }); 
+        } 
+ 
+        </span><span class="s0">else </span><span class="s1">{ 
+            mChoice1.setText(mCurrentPage.getChoice1().getText()); 
+            mChoice2.setText(mCurrentPage.getChoice2().getText()); 
+ 
+            mChoice1.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() { 
+                @Override 
+                </span><span class="s0">public void </span><span class="s1">onClick(View v) { 
+                    </span><span class="s0">int </span><span class="s1">nextPage = mCurrentPage.getChoice1().getNextPage(); 
+                    loadPage(nextPage); 
+                } 
+            }); 
+ 
+            mChoice2.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() { 
+                @Override 
+                </span><span class="s0">public void </span><span class="s1">onClick(View v) { 
+                    </span><span class="s0">int </span><span class="s1">nextPage = mCurrentPage.getChoice2().getNextPage(); 
+                    loadPage(nextPage); 
+                } 
+            }); 
+        } 
+    } 
+} 
+</span></pre>
+</body>
+</html>

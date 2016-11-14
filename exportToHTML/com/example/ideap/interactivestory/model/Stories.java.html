@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Stories.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,0,255); }
+.s4 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Stories.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">com.example.ideap.interactivestory.model; 
+ 
+</span><span class="s0">import </span><span class="s1">com.example.ideap.interactivestory.R; 
+ 
+</span><span class="s2">/** 
+ * Created by ideap on 19-04-2016. 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">Stories { 
+    </span><span class="s0">private </span><span class="s1">Page[] mPages; 
+ 
+    </span><span class="s0">public </span><span class="s1">Stories(){ 
+        mPages = </span><span class="s0">new </span><span class="s1">Page[</span><span class="s3">7</span><span class="s1">]; 
+ 
+        mPages[</span><span class="s3">0</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Page( 
+                R.mipmap.page0, 
+                </span><span class="s4">&quot;On your return trip from studying Saturn's rings, you hear a distress signal that seems to be coming from the surface of Mars. It's strange because there hasn't been a colony there in years. Even stranger, it's calling you by name: </span><span class="s0">\&quot;</span><span class="s4">Help me, %1$s, you're my only hope.</span><span class="s0">\&quot;</span><span class="s4">&quot;</span><span class="s1">, 
+                </span><span class="s0">new </span><span class="s1">Choice(</span><span class="s4">&quot;Stop and investigate&quot;</span><span class="s1">, </span><span class="s3">1</span><span class="s1">), 
+                </span><span class="s0">new </span><span class="s1">Choice(</span><span class="s4">&quot;Continue home to earth&quot;</span><span class="s1">, </span><span class="s3">2</span><span class="s1">)); 
+ 
+        mPages[</span><span class="s3">1</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Page( 
+                R.mipmap.page1, 
+                </span><span class="s4">&quot;You deftly land your ship near where the distress signal originated. You didn't notice anything strange on your fly-by, but there is a cave in front of you. Behind you is an abandoned rover from the early 21st century.&quot;</span><span class="s1">, 
+                </span><span class="s0">new </span><span class="s1">Choice(</span><span class="s4">&quot;Explore the cave&quot;</span><span class="s1">, </span><span class="s3">3</span><span class="s1">), 
+                </span><span class="s0">new </span><span class="s1">Choice(</span><span class="s4">&quot;Explore the rover&quot;</span><span class="s1">, </span><span class="s3">4</span><span class="s1">)); 
+ 
+        mPages[</span><span class="s3">2</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Page( 
+                R.mipmap.page2, 
+                </span><span class="s4">&quot;You continue your course to Earth. Two days later, you receive a transmission from HQ saying that they have detected some sort of anomaly on the surface of Mars near an abandoned rover. They ask you to investigate, but ultimately the decision is yours because your mission has already run much longer than planned and supplies are low.&quot;</span><span class="s1">, 
+                </span><span class="s0">new </span><span class="s1">Choice(</span><span class="s4">&quot;Head back to Mars to investigate&quot;</span><span class="s1">, </span><span class="s3">4</span><span class="s1">), 
+                </span><span class="s0">new </span><span class="s1">Choice(</span><span class="s4">&quot;Continue home to Earth&quot;</span><span class="s1">, </span><span class="s3">6</span><span class="s1">)); 
+ 
+        mPages[</span><span class="s3">3</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Page( 
+                R.mipmap.page3, 
+                </span><span class="s4">&quot;Your EVA suit is equipped with a headlamp, which you use to navigate the cave. After searching for a while your oxygen levels are starting to get pretty low. You know you should go refill your tank, but there's a very faint light up ahead.&quot;</span><span class="s1">, 
+                </span><span class="s0">new </span><span class="s1">Choice(</span><span class="s4">&quot;Refill at ship and explore the rover&quot;</span><span class="s1">, </span><span class="s3">4</span><span class="s1">), 
+                </span><span class="s0">new </span><span class="s1">Choice(</span><span class="s4">&quot;Continue towards the faint light&quot;</span><span class="s1">, </span><span class="s3">5</span><span class="s1">)); 
+ 
+        mPages[</span><span class="s3">4</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Page( 
+                R.mipmap.page4, 
+                </span><span class="s4">&quot;The rover is covered in dust and most of the solar panels are broken. But you are quite surprised to see the on-board system booted up and running. In fact, there is a message on the screen: </span><span class="s0">\&quot;</span><span class="s4">%1$s, come to 28.543436, -81.369031.</span><span class="s0">\&quot;</span><span class="s4"> Those coordinates aren't far, but you don't know if your oxygen will last there and back.&quot;</span><span class="s1">, 
+                </span><span class="s0">new </span><span class="s1">Choice(</span><span class="s4">&quot;Explore the coordinates&quot;</span><span class="s1">, </span><span class="s3">5</span><span class="s1">), 
+                </span><span class="s0">new </span><span class="s1">Choice(</span><span class="s4">&quot;Return to Earth&quot;</span><span class="s1">, </span><span class="s3">6</span><span class="s1">)); 
+ 
+        mPages[</span><span class="s3">5</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Page( 
+                R.mipmap.page5, 
+                </span><span class="s4">&quot;After a long walk slightly uphill, you end up at the top of a small crater. You look around, and are overjoyed to see your favorite android, %1$s-S1124. It had been lost on a previous mission to Mars! You take it back to your ship and fly back to Earth.&quot;</span><span class="s1">); 
+ 
+        mPages[</span><span class="s3">6</span><span class="s1">] = </span><span class="s0">new </span><span class="s1">Page( 
+                R.mipmap.page6, 
+                </span><span class="s4">&quot;You arrive home on Earth. While your mission was a success, you forever wonder what was sending that signal. Perhaps a future mission will be able to investigate...&quot;</span><span class="s1">); 
+ 
+ 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Page getPage(</span><span class="s0">int </span><span class="s1">pageNumber){ 
+        </span><span class="s0">return </span><span class="s1">mPages[pageNumber]; 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>
